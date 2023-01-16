@@ -2,20 +2,8 @@
 #
 # seabattle.py
 # version = 0.1
-# TO DO improve brainless bot
+# TO DO: improve brainless bot
 # For skillfactory B7.5
-#   [['O', 'O', 'O', 'O', 'O', 'O'],
-#    ['O', 'O', 'O', 'O', 'O', 'O'],
-#    ['O', 'O', 'O', 'O', 'O', 'O'],
-#    ['O', 'O', 'O', 'O', 'O', 'O'],
-#    ['O', 'O', 'O', 'O', 'O', 'O'],
-#    ['O', 'O', 'O', 'O', 'O', 'O']]
-#    O - empty dot
-#    ▾ - empty fired dot
-#    ■ - undamaged ship
-#    X - damaged ship
-#    ▫ - ship contour
-#    + - drowning ship contour
 import random
 
 
@@ -96,11 +84,6 @@ class Board:
                 else:
                     print(self._board[i][j], end=' | ')
             print()
-
-#    def out(self, dot):
-#        if 0 <= dot[0] <= 5 and 0 <= dot[1] <= 5:
-#            return True
-#        return False
 
     def shot(self, dot):
         if self._board[dot[0]][dot[1]] == 'O' or self._board[dot[0]][dot[1]] == '▫':
@@ -212,8 +195,8 @@ class Game:
                 if not self.user.board.afloat:
                     print('Компьютер победил!')
                     return False
-                else:
-                    self.user.board.console(True)
+#                else:
+#                    self.user.board.console()
                 continue
         self.user.board.console()
         input("Раунд {0} завершен. Нажмите 'Enter' для продолжения.".format(self.round))
@@ -246,12 +229,15 @@ class NoReason(Exception):
 
 
 def main():
-    print('************************** Игра: Морской бой. **************************')
-    print('''Правила игры:
+    print('''************************** Игра: Морской бой. **************************
+Правила игры:
 Размер игрового поля 6х6. 
 Координата точки определяется пересечением строки(А-Е) и столбца(1-6).
 Используется следующее количество кораблей: 
 1 корабль на 3 клетки, 2 корабля на 2 клетки, 4 корабля на одну клетку.
+Для отображения событий потребуются следующие значки:
+O - пустое поле; ▾ - промах; ■ - палуба корабля;
+X - попадание; ▫ - контур корабля; + - контур потопленного корабля.
 Корабли расставляются случайным образом.
 Первый выстрел делает пользователь, далее компьютер, и так по очереди.
 При попадании по кораблю противника игрок делает дополнительный ход.
